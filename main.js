@@ -6,12 +6,8 @@ function Playlist(mus_img, artist, Song, link, id) {
         obj.link = link,
         obj.id = id,
         obj.counter = 0
-      obj.addMusic = function (mus_img, artist, Song, link, id) {
-        this.list.push(new Playlist(mus_img, artist, Song, link, id));
-        console.log(this.list);
-    };
-    obj.removed = removed
-    obj.list = []
+    
+   
     return obj
 }
 
@@ -19,7 +15,7 @@ var music1 = Playlist(["./images/maes.jpg", "./images/cover1.jpg"], "Maes", "Ber
 var music2 = Playlist(["./images/babygang.jpg", "./images/cover2.jpg"], "Baby Gang", "Mocro Mafia", "https://www.youtube.com/watch?v=xK-rxiKd2D4", 2)
 var music3 = Playlist(["./images/maes2.jpg"], "Maes", "Professor", "https://www.youtube.com/watch?v=1Z7_wsXkxYc", 3)
 var music4 = Playlist(["./images/freeze.jpg", "./images/cover3.jpg"], "Freeze Corleone", "Ancelotti", "https://www.youtube.com/watch?v=a05sE-59zC0", 4)
-var music5 = Playlist(["./images/lacrim.jpg", "./images/kanun2.jpg"], "Lacrim", "Kanun", "", 5)
+var music5 = Playlist(["./images/lacrim.jpg", "./images/kanun2.jpg"], "Lacrim", "Kanun", "https://www.youtube.com/watch?v=1Z7_wsXkxYc", 5)
 
 
 var musics = [music1, music2, music3, music4, music5]
@@ -66,6 +62,7 @@ function reduce(array, f, acc) {
 var $container = $(".container")
 
 function render(musics) {
+    $container.empty()
     each(musics, function (element, i) {
         console.log(musics)
         console.log(element)
@@ -80,23 +77,18 @@ function render(musics) {
 
 render(musics)
 
-
-console.log(this.list,'gggggggggggg')
-
 $(".images").click(function (event) {
 
     var music;
     var id = event.target.id
-    console.log(event.target.src)
     var idOfClickedImage = (Number(event.target.id));
+    //console.log(idOfClickedImage)
     for (var i = 0; i < musics.length; i++) {
         if (idOfClickedImage === musics[i].id) {
             idOfClickedImage = musics[i].mus_img
             music = musics[i]
         }
     }
-    //  console.log(idOfClickedImage)
-    //  console.log(music)
     if (music.counter === 1) {
         music.counter = 0
 
@@ -113,8 +105,7 @@ $(".images").click(function (event) {
 
 
 function addMusic(mus_img, artist, Song, link, id) {
-   this.list.push(new Playlist(mus_img, artist, Song, link, id))
-   console.log(this.list);
+   musics.push(new Playlist(mus_img, artist, Song, link, id))
 }
 $(".btn").click(function () {
     var imageUrl = $("#imageUrl").val()
@@ -123,32 +114,38 @@ $(".btn").click(function () {
     var link = $("#link").val()
     var id = parseInt($("#id").val())
     console.log([imageUrl], artist, song, link, id)
-
+   
     
-    var playlistInstance = new Playlist()
-    playlistInstance.addMusic([imageUrl], artist, song, link, id)
+    var newSong = new Playlist([imageUrl,artist,song,link,id])
+  musics.push(newSong )
+  render(musics)
 });
 
 
-var x = this.list
-function render2(x) {
-    each(x, function (element, i) {
-        $container.append(`
-<img class="images" id="${element.id}" src=${element.mus_img[element.counter]}>
- <h2> ${element.artist}</h2>
- <h2> ${element.Song}</h2>
- <a href="${element.link}" >Play</a>
-      `)
-    })
+
+
+
+
+
+
+
+function searchThis(query) {
+    var filtered = [];
+    if (query !== "") {
+        filtered = filter( musics,function(song) {
+            // console.log(song,"tesssss");
+            return song.artist.toLowerCase().includes(query.toLowerCase()) ||
+                song.Song.toLowerCase().includes(query.toLowerCase())
+        })
+    } else if(query==="") {
+        filtered = musics
+    }
+    return filtered
 }
-render2(x)
 
 
-
-
-// function removed(id) {
-//     var filtered = filter(this.list, function (element, i) {
-//         return element.id !== id
-//     })
-//     this.list = filtered
-// }
+$(".searchButton").click(function () {
+    var searchQuery = $('.searchTerm').val();
+    var filteredMusics = searchThis(searchQuery);
+    render(filteredMusics);
+});
