@@ -100,6 +100,14 @@ $(".images").click(function (event) {
 
 
 
+function removed(id){
+    var filtered=filter(musics,function(element,i){
+      return element.id !== id 
+    }) 
+    musics=filtered
+    }
+
+
 
 
 
@@ -116,10 +124,14 @@ $(".btn").click(function () {
     console.log([imageUrl], artist, song, link, id)
    
     
-    var newSong = new Playlist([imageUrl,artist,song,link,id])
+    var newSong = new Playlist([imageUrl],artist,song,link,id)
   musics.push(newSong )
   render(musics)
 });
+
+
+
+
 
 
 
