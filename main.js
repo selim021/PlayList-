@@ -1,21 +1,22 @@
-function Playlist(mus_img, artist, Song, link, id) {
-    var obj = {}
-    obj.mus_img = mus_img,
-        obj.artist = artist,
-        obj.Song = Song,
-        obj.link = link,
-        obj.id = id,
-        obj.counter = 0
-    
-   
-    return obj
+function Playlist(mus_img, artist, Song, Duration, link, id) {
+    var obj = {};
+    obj.mus_img = mus_img;
+    obj.artist = artist;
+    obj.Song = Song;
+    obj.Duration = Duration; 
+    obj.link = link;
+    obj.id = id;
+    obj.counter = 0;
+
+    return obj;
 }
 
-var music1 = Playlist(["./images/maes.jpg", "./images/cover1.jpg"], "Maes", "Bercy", "https://www.youtube.com/watch?v=MBpnyHp3x4M", 1)
-var music2 = Playlist(["./images/babygang.jpg", "./images/cover2.jpg"], "Baby Gang", "Mocro Mafia", "https://www.youtube.com/watch?v=xK-rxiKd2D4", 2)
-var music3 = Playlist(["./images/sch.jpg","./images/sch2.jpg"], "SCH", "Marché Noir", "https://www.youtube.com/watch?v=tKD6yT9Jv-w", 3)
-var music4 = Playlist(["./images/freeze.jpg", "./images/cover3.jpg"], "Freeze Corleone", "Ancelotti", "https://www.youtube.com/watch?v=a05sE-59zC0", 4)
-var music5 = Playlist(["./images/lacrim.jpg", "./images/kanun2.jpg"], "Lacrim", "Kanun", "https://www.youtube.com/watch?v=ZfdtyHlXebY", 5)
+
+var music1 = Playlist(["./images/maes.jpg", "./images/cover1.jpg"], "Maes", "Bercy","1:51", "https://www.youtube.com/watch?v=MBpnyHp3x4M", 1)
+var music2 = Playlist(["./images/babygang.jpg", "./images/cover2.jpg"], "Baby Gang", "Mocro Mafia", "3:13","https://www.youtube.com/watch?v=xK-rxiKd2D4", 2)
+var music3 = Playlist(["./images/sch.jpg","./images/sch2.jpg"], "SCH", "Marché Noir","7:41", "https://www.youtube.com/watch?v=tKD6yT9Jv-w", 3)
+var music4 = Playlist(["./images/freeze.jpg", "./images/cover3.jpg"], "Freeze Corleone","Ancelotti",  "3:41","https://www.youtube.com/watch?v=a05sE-59zC0", 4)
+var music5 = Playlist(["./images/lacrim.jpg", "./images/kanun2.jpg"], "Lacrim", "Kanun","3:05", "https://www.youtube.com/watch?v=ZfdtyHlXebY", 5)
 
 
 var musics = [music1, music2, music3, music4, music5]
@@ -68,8 +69,9 @@ function render(musics) {
         // console.log(element)
         $container.append(`<div class="contains">
 <img class="images" id="${element.id}" src=${element.mus_img[element.counter]}>
- <h2> ${element.artist}</h2>
- <h2> ${element.Song}</h2>
+ <h2> Artist: ${element.artist}</h2>
+ <h2> Song: ${element.Song}</h2>
+ <h2> Duration: ${element.Duration}</h2>
  <a class="aa" href="${element.link}" >Play</a>
      </div> `)
     })
@@ -100,31 +102,20 @@ $(".images").click(function (event) {
 
 
 
-function removed(id){
-    var filtered=filter(musics,function(element,i){
-      return element.id !== id 
-    }) 
-    musics=filtered
-    }
-
-
-
-
-
-
-function addMusic(mus_img, artist, Song, link, id) {
-   musics.push(new Playlist(mus_img, artist, Song, link, id))
+function addMusic(imageUrl, artist, song, duration, link, id) {
+    musics.push(new Playlist([imageUrl], artist, song, duration, link, id));
 }
 $(".btn").click(function () {
     var imageUrl = $("#imageUrl").val()
     var artist = $("#artist").val()
     var song = $("#song").val()
+    var duration = $("#duration").val();
     var link = $("#link").val()
     var id = parseInt($("#id").val())
     // console.log([imageUrl], artist, song, link, id)
    
     
-    var newSong = new Playlist([imageUrl],artist,song,link,id)
+    var newSong = new Playlist([imageUrl],artist,song,duration,link,id)
   musics.push(newSong )
   render(musics)
 })
