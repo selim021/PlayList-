@@ -13,9 +13,9 @@ function Playlist(mus_img, artist, Song, link, id) {
 
 var music1 = Playlist(["./images/maes.jpg", "./images/cover1.jpg"], "Maes", "Bercy", "https://www.youtube.com/watch?v=MBpnyHp3x4M", 1)
 var music2 = Playlist(["./images/babygang.jpg", "./images/cover2.jpg"], "Baby Gang", "Mocro Mafia", "https://www.youtube.com/watch?v=xK-rxiKd2D4", 2)
-var music3 = Playlist(["./images/maes2.jpg"], "Maes", "Professor", "https://www.youtube.com/watch?v=1Z7_wsXkxYc", 3)
+var music3 = Playlist(["./images/sch.jpg","./images/sch2.jpg"], "SCH", "Marché Noir", "https://www.youtube.com/watch?v=tKD6yT9Jv-w", 3)
 var music4 = Playlist(["./images/freeze.jpg", "./images/cover3.jpg"], "Freeze Corleone", "Ancelotti", "https://www.youtube.com/watch?v=a05sE-59zC0", 4)
-var music5 = Playlist(["./images/lacrim.jpg", "./images/kanun2.jpg"], "Lacrim", "Kanun", "https://www.youtube.com/watch?v=1Z7_wsXkxYc", 5)
+var music5 = Playlist(["./images/lacrim.jpg", "./images/kanun2.jpg"], "Lacrim", "Kanun", "https://www.youtube.com/watch?v=ZfdtyHlXebY", 5)
 
 
 var musics = [music1, music2, music3, music4, music5]
@@ -64,14 +64,14 @@ var $container = $(".container")
 function render(musics) {
     $container.empty()
     each(musics, function (element, i) {
-        console.log(musics)
-        console.log(element)
-        $container.append(`
+        // console.log(musics)
+        // console.log(element)
+        $container.append(`<div class="contains">
 <img class="images" id="${element.id}" src=${element.mus_img[element.counter]}>
  <h2> ${element.artist}</h2>
  <h2> ${element.Song}</h2>
- <a href="${element.link}" >Play</a>
-      `)
+ <a class="aa" href="${element.link}" >Play</a>
+     </div> `)
     })
 }
 
@@ -121,27 +121,19 @@ $(".btn").click(function () {
     var song = $("#song").val()
     var link = $("#link").val()
     var id = parseInt($("#id").val())
-    console.log([imageUrl], artist, song, link, id)
+    // console.log([imageUrl], artist, song, link, id)
    
     
     var newSong = new Playlist([imageUrl],artist,song,link,id)
   musics.push(newSong )
   render(musics)
-});
+})
 
 
 
 
 
-
-
-
-
-
-
-
-
-function searchThis(query) {
+function SearchBy(query) {
     var filtered = [];
     if (query !== "") {
         filtered = filter( musics,function(song) {
@@ -157,7 +149,10 @@ function searchThis(query) {
 
 
 $(".searchButton").click(function () {
-    var searchQuery = $('.searchTerm').val();
-    var filteredMusics = searchThis(searchQuery);
-    render(filteredMusics);
-});
+    var searchQuery = $('.searching').val()
+    var filteredMusics = SearchBy(searchQuery)
+    render(filteredMusics)
+})
+
+
+

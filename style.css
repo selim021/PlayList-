@@ -1,56 +1,96 @@
 body {
-    background: url('https://wallpapercave.com/wp/wp2590732.jpg') center/cover fixed no-repeat;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
 }
 
-h1 {
+header {
     text-align: center;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #3498db;
     color: white;
-}
-
-.example {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.searchTerm {
-    width: 70%;
-    padding: 8px;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-}
-
-.searchButton {
-    border: none;
-    height: 36px;
-    width: 36px;
-    background-color: #333;
-    color: white;
-    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.contains {
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .images {
     width: 100%;
     max-width: 300px;
     height: auto;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
 }
 
-.images:hover {
-    transform: scale(1.05);
+.music-info {
+    text-align: center;
+    margin-top: 10px;
 }
 
+.music-info h2 {
+    margin-bottom: 5px;
+}
+
+.music-info a {
+    display: block;
+    color: #3498db;
+    margin-top: 5px;
+}
+
+.btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.searchButton {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    
+}
+
+h1 {
+    text-align: center;
+    color: #3498db;
+}
+
+.aa {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    margin-top: 5px;
+}
