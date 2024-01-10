@@ -73,6 +73,7 @@ function render(musics) {
  <h2> Song: ${element.Song}</h2>
  <h2> Duration: ${element.Duration}</h2>
  <a class="aa" href="${element.link}" >Play</a>
+ <button class="removed" onclick="delteme(${element.id})">  Remove</button>
      </div> `)
     })
 }
@@ -83,8 +84,9 @@ $(".images").click(function (event) {
 
     var music;
     var id = event.target.id
+    console.log(event.target)
     var idOfClickedImage = (Number(event.target.id));
-    //console.log(idOfClickedImage)
+    console.log(idOfClickedImage)
     for (var i = 0; i < musics.length; i++) {
         if (idOfClickedImage === musics[i].id) {
             idOfClickedImage = musics[i].mus_img
@@ -112,7 +114,6 @@ $(".btn").click(function () {
     var duration = $("#duration").val();
     var link = $("#link").val()
     var id = parseInt($("#id").val())
-    // console.log([imageUrl], artist, song, link, id)
    
     
     var newSong = new Playlist([imageUrl],artist,song,duration,link,id)
@@ -147,3 +148,13 @@ $(".searchButton").click(function () {
 
 
 
+function deleted(id){
+    var filtered=filter(musics,function(element,i){
+      return element.id!== id 
+    }) 
+return filtered
+    }
+    
+function delteme(id){
+    render(deleted(id))
+}

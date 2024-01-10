@@ -5,15 +5,6 @@ body {
     padding: 0;
 }
 
-header {
-    text-align: center;
-    padding: 20px;
-    background-color: #3498db;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -61,15 +52,6 @@ header {
     border-radius: 5px;
 }
 
-.form-container {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 
 .search-container {
     text-align: center;
@@ -78,22 +60,23 @@ header {
 
 .searchButton {
     padding: 10px;
-    background-color: #3498db;
+    background-color: #f1f1f1;
     color: white;
     
 }
 
 h1 {
     text-align: center;
-    color: #3498db;
+    color: #ff0000;
 }
 
 .aa {
     display: inline-block;
     padding: 10px 15px;
     background-color: #4caf50;
-    color: white;
-    border-radius: 5px;
-    margin-top: 5px;
+    color: rgb(255, 255, 255);
+
     
 }
+
+
